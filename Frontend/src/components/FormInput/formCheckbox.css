@@ -1,0 +1,12 @@
+.form-checkbox {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  margin-block-start: 1rem;
+  user-select: none;
+
+  input[type="checkbox"] {
+    width: 1.25rem;
+    aspect-ratio: 1/1;
+  }
+}
