@@ -1,0 +1,17 @@
+.primary-button-1 {
+  border: 1px solid var(--accent-1-border);
+  border-radius: 10rem;
+  padding-block: 0.5rem;
+  width: 7rem;
+
+  background-color: var(--accent-1);
+  color: var(--accent-1-text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-avg);
+
+  &:hover {
+    background-color: var(--accent-1-hover);
+  }
+}
