@@ -22,9 +22,19 @@
 
   &.close {
     justify-self: end;
+    cursor: pointer;
 
     svg {
       width: 100%;
+    }
+
+    path {
+      fill: var(--close);
+      transition: fill var(--transition-fast);
+    }
+
+    &.close:hover path {
+      fill: var(--close-hover);
     }
   }
 }

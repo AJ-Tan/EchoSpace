@@ -9,7 +9,7 @@ export function AuthProvider({
 }: {
   user: UserType;
   setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
-  children: JSX.Element;
+  children: JSX.Element[];
 }) {
   return (
     <AuthContext.Provider value={{ user, setUser }}>

@@ -8,10 +8,16 @@
 
 :root {
   --accent-1: #aa3bff;
-  --accent-1-border: rgba(170, 59, 255, 0.5);
+  --accent-1-hover: #a229ff;
+  --accent-1-border: rgb(132, 55, 190);
   --accent-1-bg: rgba(170, 59, 255, 0.1);
+  --accent-1-text: white;
+  --ok: green;
+  --ok-border: green;
   --warning: red;
   --warning-border: red;
+  --close: gray;
+  --close-hover: black;
   --border: #686769;
   --text: #6b6375;
   --text-h: #08060d;
@@ -26,6 +32,7 @@
   --mono: ui-monospace, Consolas, monospace;
 
   --transition-fast: 0.1s;
+  --transition-avg: 0.3s;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
@@ -120,4 +127,9 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+form {
+  position: relative;
+  overflow: hidden;
 }

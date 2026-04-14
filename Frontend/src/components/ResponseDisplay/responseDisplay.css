@@ -1,0 +1,59 @@
+.response-list {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 21rem;
+  padding: 0.5rem;
+  list-style-type: none;
+  overflow: hidden;
+  z-index: 2;
+
+  @media screen and (max-width: 650px) {
+    right: 1rem;
+  }
+  @media screen and (max-width: 400px) {
+    right: 1rem;
+    left: 1rem;
+    width: unset;
+  }
+}
+
+.response-item {
+  position: relative;
+  background-color: var(--bg);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 0.5rem;
+  padding-inline-start: 1rem;
+  padding-inline-end: 0.75rem;
+  padding-block-start: 0.5rem;
+  padding-block-end: 1.5rem;
+  overflow: hidden;
+}
+
+.response-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: start;
+}
+
+.response-countdown {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 100%;
+  animation: shrink 5s linear forwards;
+
+  &.ok {
+    background-color: var(--ok);
+  }
+
+  &.warning {
+    background-color: var(--warning);
+  }
+}
