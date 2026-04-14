@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FormInput from "../../components/FormInput/FormInput";
+import FormInput from "../../components/Inputs/FormInput/FormInput";
 import { authSignIn } from "../../services/auth";
 import { useAuth } from "../../hooks/useAuth";
 import { Link } from "react-router";

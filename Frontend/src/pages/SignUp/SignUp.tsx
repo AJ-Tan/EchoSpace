@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import FormInput from "../../components/FormInput/FormInput";
+import FormInput from "../../components/Inputs/FormInput/FormInput";
 import { authSignUp } from "../../services/auth";
 import "./signUp.css";
 import { validateUserInformation } from "../../services/input-validation";
