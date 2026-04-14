@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import FormInput from "../../components/FormInput/FormInput";
 import { authSignUp } from "../../services/auth";
 import "./signUp.css";
 import { validateUserInformation } from "../../services/input-validation";
 import { useNavigate } from "react-router";
+import PrimaryButton1 from "../../components/Buttons/PrimaryButton/PrimaryButton1";
 
 type ValidateItem = {
   params: string;
   body: Record<string, string>;
+  title: string;
   description: string;
 };
 
@@ -23,28 +25,32 @@ function SignUp() {
   const [errorList, setErrorList] = useState<Record<string, string[]>>({});
   const [active, setActive] = useState(1);
   const navigate = useNavigate();
+  const groupRef = useRef<Record<number, HTMLDivElement | null>>({});
 
   const validateInputs: ValidateInputs = {
     1: {
       params: "/signup/validate/user-information",
       body: { firstName, lastName },
-      description: "Insert personal information",
+      title: "Personal Information",
+      description: "Let us know who you are.",
     },
     2: {
       params: "/signup/validate/login-credentials",
       body: { username, password, confirmPassword },
-      description: "Set up your login credentials.",
+      title: "Login Credentials",
+      description: "Set up your credentials for this account.",
     },
     3: {
       params: "/signup/validate/admin",
       body: { admin },
-      description: "Enter the correct keyword to set user as admin.",
+      title: "Admin Account",
+      description:
+        "Enter the correct keyword to set user as admin, leave empty if not.",
     },
   };
 
   const nextGroup = async () => {
     const data = await validateUserInformation(validateInputs[active]);
-
     if (!data.ok) {
       setErrorList(
         data.errors.reduce<Record<string, string[]>>((prev, err) => {
@@ -55,11 +61,35 @@ function SignUp() {
       );
     } else {
       setErrorList({});
-      setActive((prev) => prev + 1);
+      const nextIndex = active + 1;
+      const currentGroup = groupRef.current[active];
+      const nextGroup = groupRef.current[nextIndex];
+
+      currentGroup?.classList.add("slide-out-toLeft-abs");
+      nextGroup?.classList.add("slide-in-fromRight", "active");
+      nextGroup?.addEventListener(
+        "animationend",
+        () => {
+          setActive((prev) => prev + 1);
+        },
+        { once: true },
+      );
     }
   };
   const previousGroup = () => {
-    setActive((prev) => prev - 1);
+    const previousIndex = active - 1;
+    const currentGroup = groupRef.current[active];
+    const previousGroup = groupRef.current[previousIndex];
+
+    currentGroup?.classList.add("slide-out-toRight-abs");
+    previousGroup?.classList.add("slide-in-fromLeft", "active");
+    previousGroup?.addEventListener(
+      "animationend",
+      () => {
+        setActive((prev) => prev - 1);
+      },
+      { once: true },
+    );
   };
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -88,10 +118,15 @@ function SignUp() {
   return (
     <form onSubmit={handleSubmit}>
       <header>
-        <h1>Sign Up</h1>
+        <h1>{validateInputs[active].title}</h1>
         <p>{validateInputs[active].description}</p>
       </header>
-      <div className={`form-group ${active === 1 && "active"}`}>
+      <div
+        ref={(el) => {
+          groupRef.current["1"] = el;
+        }}
+        className={`form-group ${active === 1 && "active"}`}
+      >
         <FormInput
           id="firstName"
           labelText="First Name"
@@ -104,11 +139,13 @@ function SignUp() {
           state={[lastName, setLastName]}
           errorMessage={errorList["lastName"]}
         />
-        <button type="button" onClick={nextGroup}>
-          Next
-        </button>
       </div>
-      <div className={`form-group ${active === 2 && "active"}`}>
+      <div
+        ref={(el) => {
+          groupRef.current["2"] = el;
+        }}
+        className={`form-group ${active === 2 && "active"}`}
+      >
         <FormInput
           id="username"
           labelText="Username"
@@ -129,14 +166,13 @@ function SignUp() {
           errorMessage={errorList["confirmPassword"]}
           type="password"
         />
-        <button type="button" onClick={previousGroup}>
-          Back
-        </button>
-        <button type="button" onClick={nextGroup}>
-          Next
-        </button>
       </div>
-      <div className={`form-group ${active === 3 && "active"}`}>
+      <div
+        ref={(el) => {
+          groupRef.current["3"] = el;
+        }}
+        className={`form-group ${active === 3 && "active"}`}
+      >
         <FormInput
           id="isAdmin"
           labelText="Admin Keyword (optional)"
@@ -144,11 +180,15 @@ function SignUp() {
           errorMessage={errorList["admin"]}
           type="password"
         />
-        <button type="button" onClick={previousGroup}>
-          Back
-        </button>
-        <button type="submit">Register</button>
       </div>
+      {active !== 1 && (
+        <PrimaryButton1 onclick={previousGroup}>Back</PrimaryButton1>
+      )}
+      {Object.keys(validateInputs).length !== active ? (
+        <PrimaryButton1 onclick={nextGroup}>Next</PrimaryButton1>
+      ) : (
+        <PrimaryButton1 type="submit">Register</PrimaryButton1>
+      )}
     </form>
   );
 }
