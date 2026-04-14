@@ -1,6 +1,6 @@
 import { Navigate } from "react-router";
-import type { UserType } from "../utils/commonTypes";
 import type { JSX } from "react";
+import type { UserType } from "../types/commonTypes";
 
 type ProtectedRouteProps = {
   user: UserType;

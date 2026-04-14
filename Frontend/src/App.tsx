@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { AuthProvider } from "./context/AuthContext/AuthContextProvider";
-import type { UserType } from "./utils/commonTypes";
+import type { UserType } from "./types/commonTypes";
 import { createHashRouter, RouterProvider } from "react-router";
 import { routes } from "./routes/routes";
 import { authProtected } from "./services/auth";
-import ResponseDisplay from "./components/ResponseDisplay/ResponseDisplay";
 
 function App() {
   const [user, setUser] = useState<UserType>(null);
@@ -24,7 +23,6 @@ function App() {
   const router = createHashRouter(routes(user));
   return (
     <AuthProvider user={user} setUser={setUser}>
-      <ResponseDisplay />
       <RouterProvider router={router} />
     </AuthProvider>
   );

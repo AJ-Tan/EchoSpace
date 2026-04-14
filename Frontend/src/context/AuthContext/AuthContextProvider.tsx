@@ -1,6 +1,6 @@
 import { type JSX } from "react";
 import { AuthContext } from "./AuthContext";
-import type { UserType } from "../../utils/commonTypes";
+import type { UserType } from "../../types/commonTypes";
 
 export function AuthProvider({
   user,
@@ -9,7 +9,7 @@ export function AuthProvider({
 }: {
   user: UserType;
   setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
-  children: JSX.Element[];
+  children: JSX.Element;
 }) {
   return (
     <AuthContext.Provider value={{ user, setUser }}>

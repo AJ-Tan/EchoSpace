@@ -1,5 +1,5 @@
 import { Navigate } from "react-router";
-import type { UserType } from "../utils/commonTypes";
+import type { UserType } from "../types/commonTypes";
 import type { JSX } from "react";
 
 type PublicRouteProps = {

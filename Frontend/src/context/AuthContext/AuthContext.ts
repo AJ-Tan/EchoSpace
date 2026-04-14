@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { UserType } from "../../utils/commonTypes";
+import type { UserType } from "../../types/commonTypes";
 
 type AuthContextType = {
   user: UserType;

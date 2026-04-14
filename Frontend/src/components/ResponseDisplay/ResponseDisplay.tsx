@@ -3,18 +3,10 @@ import "./responseDisplay.css";
 import SuccessIcon from "../Icons/SuccessIcon";
 import WarningIcon from "../Icons/WarningIcon";
 import CloseButton from "../Buttons/CloseButton/CloseButton";
-
-type DisplayItemType = {
-  id: string;
-  ok: boolean;
-  message: string;
-};
+import type { DisplayItemType } from "../../types/commonTypes";
 
 function ResponseDisplay() {
-  const [displayList, setDisplayList] = useState<DisplayItemType[]>([
-    { id: "a", ok: true, message: "User has successfully registered." },
-    { id: "b", ok: false, message: "Invalid credential." },
-  ]);
+  const [displayList, setDisplayList] = useState<DisplayItemType[]>([]);
 
   const handleClose = (
     id: string,
@@ -56,30 +48,33 @@ function ResponseDisplay() {
     }
   };
 
-  return (
-    <ul className="response-list">
-      {displayList.map((item) => (
-        <li
-          key={item.id}
-          id={item.id}
-          className="response-item slide-in-fromRight"
-          onAnimationEnd={(e) => {
-            (e.target as HTMLElement).classList.remove("slide-in-fromRight");
-          }}
-        >
-          <CloseButton handleClick={(e) => handleClose(item.id, e)} />
-          <div className="response-content">
-            {item.ok ? <SuccessIcon /> : <WarningIcon />}
-            <span>{item.message}</span>
-          </div>
-          <div
-            className={`response-countdown ${item.ok ? "ok" : "warning"}`}
-            onAnimationEndCapture={(e) => handleAnimationEnd(item.id, e)}
-          ></div>
-        </li>
-      ))}
-    </ul>
-  );
+  return {
+    setDisplayList,
+    element: (
+      <ul className="response-list">
+        {displayList.map((item) => (
+          <li
+            key={item.id}
+            id={item.id}
+            className="response-item slide-in-fromRight"
+            onAnimationEnd={(e) => {
+              (e.target as HTMLElement).classList.remove("slide-in-fromRight");
+            }}
+          >
+            <CloseButton handleClick={(e) => handleClose(item.id, e)} />
+            <div className="response-content">
+              {item.ok ? <SuccessIcon /> : <WarningIcon />}
+              <span>{item.message}</span>
+            </div>
+            <div
+              className={`response-countdown ${item.ok ? "ok" : "warning"}`}
+              onAnimationEndCapture={(e) => handleAnimationEnd(item.id, e)}
+            ></div>
+          </li>
+        ))}
+      </ul>
+    ),
+  };
 }
 
 export default ResponseDisplay;
