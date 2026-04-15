@@ -1,6 +1,19 @@
 .btn-avatar {
   border: none;
   border-radius: 100%;
-  max-width: 3rem;
+  aspect-ratio: 1/1;
   overflow: hidden;
+
+  img {
+    width: 100%;
+    user-select: none;
+  }
+}
+
+.btn-avatar.active {
+  outline: 3px solid var(--accent-1);
+}
+
+.btn-avatar:hover {
+  outline: 3px solid var(--accent-1);
 }

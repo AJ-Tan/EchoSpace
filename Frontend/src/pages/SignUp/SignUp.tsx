@@ -5,6 +5,7 @@ import "./signUp.css";
 import { validateUserInformation } from "../../services/input-validation";
 import { useNavigate } from "react-router";
 import PrimaryButton1 from "../../components/Buttons/PrimaryButton/PrimaryButton1";
+import AvatarButton from "../../components/Buttons/AvatarButton/AvatarButton";
 
 type ValidateItem = {
   params: string;
@@ -21,6 +22,7 @@ function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [avatar, setAvatar] = useState("1");
   const [admin, setAdmin] = useState("");
   const [errorList, setErrorList] = useState<Record<string, string[]>>({});
   const [active, setActive] = useState(1);
@@ -41,6 +43,12 @@ function SignUp() {
       description: "Set up your credentials for this account.",
     },
     3: {
+      params: "/signup/validate/avatar",
+      body: { avatar },
+      title: "Avatar",
+      description: "Select an avatar for your account.",
+    },
+    4: {
       params: "/signup/validate/admin",
       body: { admin },
       title: "Admin Account",
@@ -100,9 +108,11 @@ function SignUp() {
       confirmPassword,
       firstName,
       lastName,
+      avatar,
       admin,
     });
     if (!data.ok) {
+      console.log(data);
       setErrorList(
         data.errors.reduce<Record<string, string[]>>((prev, err) => {
           if (!prev[err.path]) prev[err.path] = [];
@@ -121,74 +131,144 @@ function SignUp() {
         <h1>{validateInputs[active].title}</h1>
         <p>{validateInputs[active].description}</p>
       </header>
-      <div
-        ref={(el) => {
-          groupRef.current["1"] = el;
-        }}
-        className={`form-group ${active === 1 && "active"}`}
-      >
-        <FormInput
-          id="firstName"
-          labelText="First Name"
-          state={[firstName, setFirstName]}
-          errorMessage={errorList["firstName"]}
-        />
-        <FormInput
-          id="lastName"
-          labelText="Last Name"
-          state={[lastName, setLastName]}
-          errorMessage={errorList["lastName"]}
-        />
+
+      <div className="form-content">
+        {/* Group 1 ===================================================== */}
+
+        <div
+          ref={(el) => {
+            groupRef.current["1"] = el;
+          }}
+          className={`form-group ${active === 1 && "active"}`}
+        >
+          <FormInput
+            id="firstName"
+            labelText="First Name"
+            state={[firstName, setFirstName]}
+            errorMessage={errorList["firstName"]}
+          />
+          <FormInput
+            id="lastName"
+            labelText="Last Name"
+            state={[lastName, setLastName]}
+            errorMessage={errorList["lastName"]}
+          />
+        </div>
+
+        {/* Group 2 ===================================================== */}
+
+        <div
+          ref={(el) => {
+            groupRef.current["2"] = el;
+          }}
+          className={`form-group ${active === 2 && "active"}`}
+        >
+          <FormInput
+            id="username"
+            labelText="Username"
+            state={[username, setUsername]}
+            errorMessage={errorList["username"]}
+          />
+          <FormInput
+            id="password"
+            labelText="Password"
+            state={[password, setPassword]}
+            errorMessage={errorList["password"]}
+            type="password"
+          />
+          <FormInput
+            id="confirmPassword"
+            labelText="Confirm Password"
+            state={[confirmPassword, setConfirmPassword]}
+            errorMessage={errorList["confirmPassword"]}
+            type="password"
+          />
+        </div>
+
+        {/* Group 3 ===================================================== */}
+
+        <div
+          ref={(el) => {
+            groupRef.current["3"] = el;
+          }}
+          className={`form-group ${active === 3 && "active"}`}
+        >
+          {errorList["avatar"] && (
+            <span style={{ color: "var(--warning)" }}>
+              {errorList["avatar"][0]}
+            </span>
+          )}
+          <div className="group-avatar">
+            <AvatarButton
+              id="1"
+              className={avatar === "1" ? "active" : ""}
+              onclick={() => {
+                setAvatar("1");
+              }}
+            />
+            <AvatarButton
+              id="2"
+              className={avatar === "2" ? "active" : ""}
+              onclick={() => {
+                setAvatar("2");
+              }}
+            />
+            <AvatarButton
+              id="3"
+              className={avatar === "3" ? "active" : ""}
+              onclick={() => {
+                setAvatar("3");
+              }}
+            />
+            <AvatarButton
+              id="4"
+              className={avatar === "4" ? "active" : ""}
+              onclick={() => {
+                setAvatar("4");
+              }}
+            />
+            <AvatarButton
+              id="5"
+              className={avatar === "5" ? "active" : ""}
+              onclick={() => {
+                setAvatar("5");
+              }}
+            />
+            <AvatarButton
+              id="6"
+              className={avatar === "6" ? "active" : ""}
+              onclick={() => {
+                setAvatar("6");
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Group 4 ===================================================== */}
+
+        <div
+          ref={(el) => {
+            groupRef.current["4"] = el;
+          }}
+          className={`form-group ${active === 4 && "active"}`}
+        >
+          <FormInput
+            id="isAdmin"
+            labelText="Admin Keyword (optional)"
+            state={[admin, setAdmin]}
+            errorMessage={errorList["admin"]}
+            type="password"
+          />
+        </div>
+        {active !== 1 && (
+          <PrimaryButton1 onclick={previousGroup}>Back</PrimaryButton1>
+        )}
+        {Object.keys(validateInputs).length !== active ? (
+          <PrimaryButton1 onclick={nextGroup}>Next</PrimaryButton1>
+        ) : (
+          <PrimaryButton1 type="submit">Register</PrimaryButton1>
+        )}
       </div>
-      <div
-        ref={(el) => {
-          groupRef.current["2"] = el;
-        }}
-        className={`form-group ${active === 2 && "active"}`}
-      >
-        <FormInput
-          id="username"
-          labelText="Username"
-          state={[username, setUsername]}
-          errorMessage={errorList["username"]}
-        />
-        <FormInput
-          id="password"
-          labelText="Password"
-          state={[password, setPassword]}
-          errorMessage={errorList["password"]}
-          type="password"
-        />
-        <FormInput
-          id="confirmPassword"
-          labelText="Confirm Password"
-          state={[confirmPassword, setConfirmPassword]}
-          errorMessage={errorList["confirmPassword"]}
-          type="password"
-        />
-      </div>
-      <div
-        ref={(el) => {
-          groupRef.current["3"] = el;
-        }}
-        className={`form-group ${active === 3 && "active"}`}
-      >
-        <FormInput
-          id="isAdmin"
-          labelText="Admin Keyword (optional)"
-          state={[admin, setAdmin]}
-          errorMessage={errorList["admin"]}
-          type="password"
-        />
-      </div>
-      {active !== 1 && (
-        <PrimaryButton1 onclick={previousGroup}>Back</PrimaryButton1>
-      )}
-      {Object.keys(validateInputs).length !== active ? (
-        <PrimaryButton1 onclick={nextGroup}>Next</PrimaryButton1>
-      ) : (
-        <PrimaryButton1 type="submit">Register</PrimaryButton1>
-      )}
     </form>
   );
 }

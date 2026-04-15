@@ -5,3 +5,16 @@
     display: block;
   }
 }
+
+.form-content {
+  position: relative;
+}
+
+.group-avatar {
+  justify-self: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  max-width: 20rem;
+  justify-content: center;
+}
