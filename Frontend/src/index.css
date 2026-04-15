@@ -85,6 +85,14 @@ body {
   margin: 0;
 }
 
+button {
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+}
+
 h1,
 h2 {
   font-family: var(--heading);

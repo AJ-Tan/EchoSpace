@@ -1,0 +1,6 @@
+.btn-avatar {
+  border: none;
+  border-radius: 100%;
+  max-width: 3rem;
+  overflow: hidden;
+}
