@@ -19,18 +19,20 @@ module.exports.insertUser = async ({
   password,
   firstName,
   lastName,
+  avatar,
   admin,
 }) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     await pool.query(
-      `INSERT INTO members_only.login_info (username,password,first_name, last_name, role)
-      VALUES ($1, $2, $3, $4, $5)`,
+      `INSERT INTO members_only.login_info (username,password,first_name, last_name,avatar_id, role)
+      VALUES ($1, $2, $3, $4, $5, $6)`,
       [
         username,
         hashedPassword,
         firstName,
         lastName,
+        avatar,
         admin === admin_pw ? "admin" : "user",
       ],
     );

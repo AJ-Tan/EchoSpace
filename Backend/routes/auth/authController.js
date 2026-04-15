@@ -7,6 +7,7 @@ const {
   validateUserInformation,
   validateLoginCredentials,
   validateAdmin,
+  validateAvatar,
 } = require("./authInputValidator");
 const { validationResult } = require("express-validator");
 
@@ -59,8 +60,6 @@ module.exports.signUpUserInformation = [
   validateUserInformation,
   (req, res) => {
     const result = validationResult(req);
-    console.log(req.body);
-    console.log(result);
     if (!result.isEmpty())
       return res.status(401).json({ ok: false, errors: result.array() });
 
@@ -72,6 +71,18 @@ module.exports.signUpLoginCredentials = [
   validateLoginCredentials,
   (req, res) => {
     const result = validationResult(req);
+    if (!result.isEmpty())
+      return res.status(401).json({ ok: false, errors: result.array() });
+
+    res.status(200).json({ ok: true });
+  },
+];
+
+module.exports.signUpAvatar = [
+  validateAvatar,
+  (req, res) => {
+    const result = validationResult(req);
+
     if (!result.isEmpty())
       return res.status(401).json({ ok: false, errors: result.array() });
 

@@ -51,6 +51,12 @@ module.exports.validateLoginCredentials = [
     }),
 ];
 
+module.exports.validateAvatar = [
+  body("avatar")
+    .isIn(["1", "2", "3", "4", "5", "6"])
+    .withMessage("Invalid avatar."),
+];
+
 module.exports.validateAdmin = [
   body("admin")
     .optional({ checkFalsy: true })
