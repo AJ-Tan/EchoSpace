@@ -6,6 +6,7 @@ import { validateUserInformation } from "../../services/input-validation";
 import { useNavigate } from "react-router";
 import PrimaryButton1 from "../../components/Buttons/PrimaryButton/PrimaryButton1";
 import AvatarButton from "../../components/Buttons/AvatarButton/AvatarButton";
+import LoadingForm from "../../components/Loading/LoadingForm";
 
 type ValidateItem = {
   params: string;
@@ -127,6 +128,7 @@ function SignUp() {
 
   return (
     <form onSubmit={handleSubmit}>
+      {/* <LoadingForm /> */}
       <header>
         <h1>{validateInputs[active].title}</h1>
         <p>{validateInputs[active].description}</p>

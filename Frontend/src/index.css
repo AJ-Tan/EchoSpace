@@ -22,6 +22,7 @@
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #fff;
+  --loading-overlay: rgba(255, 255, 255, 0.5);
   --code-bg: #f4f3ec;
   --social-bg: rgba(244, 243, 236, 0.5);
   --shadow:
