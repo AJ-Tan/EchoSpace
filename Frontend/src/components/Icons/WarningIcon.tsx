@@ -1,4 +1,4 @@
-import ExclamationIconSVG from "../../assets/exclamation-icon.svg?react";
+import ExclamationIconSVG from "../../assets/icons/exclamation-icon.svg?react";
 import "./iconStyles.css";
 
 function WarningIcon() {

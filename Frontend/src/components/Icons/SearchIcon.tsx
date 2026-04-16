@@ -1,4 +1,4 @@
-import SearchIconSVG from "../../assets/search-icon.svg?react";
+import SearchIconSVG from "../../assets/icons/search-icon.svg?react";
 import "./iconStyles.css";
 
 function SearchIcon() {

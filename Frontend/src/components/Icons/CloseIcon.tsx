@@ -1,4 +1,4 @@
-import CloseIconSVG from "../../assets/close-icon.svg?react";
+import CloseIconSVG from "../../assets/icons/close-icon.svg?react";
 import "./iconStyles.css";
 
 function CloseIcon() {

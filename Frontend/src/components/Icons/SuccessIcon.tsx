@@ -1,4 +1,4 @@
-import CheckIconSVG from "../../assets/check-icon.svg?react";
+import CheckIconSVG from "../../assets/icons/check-icon.svg?react";
 import "./iconStyles.css";
 
 function SuccessIcon() {
