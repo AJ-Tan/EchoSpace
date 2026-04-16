@@ -1,9 +1,9 @@
 import { useState } from "react";
 import SearchInput from "../../../components/Inputs/SearchInput/SearchInput";
-import "./pageNavStyle.css";
 import PrimaryButton1 from "../../../components/Buttons/PrimaryButton/PrimaryButton1";
+import "./pageHeaderStyle.css";
 
-function PageNav() {
+function PageHeader() {
   const [searchInput, setSearchInput] = useState("");
 
   return (
@@ -20,4 +20,4 @@ function PageNav() {
   );
 }
 
-export default PageNav;
+export default PageHeader;
