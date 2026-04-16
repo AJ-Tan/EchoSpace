@@ -19,11 +19,15 @@
   --close: gray;
   --close-hover: black;
   --border: #d4d2d6;
+  --border-hover: #919191;
   --text: rgb(63, 63, 63);
   --text-highlight: black;
   --text-sub: #6b6375;
   --text-h: #08060d;
   --bg: #fff;
+  --bg-hover: rgb(245, 245, 245);
+  --bg-active: rgb(230, 230, 230);
+  --bg-overlay: rgba(0, 0, 0, 0.7);
   --loading-overlay: rgba(255, 255, 255, 0.5);
   --code-bg: #f4f3ec;
   --social-bg: rgba(244, 243, 236, 0.5);
@@ -92,6 +96,7 @@ input {
 }
 
 button {
+  font: inherit;
   cursor: pointer;
 }
 
