@@ -1,0 +1,20 @@
+.search-input-container {
+  display: flex;
+  gap: 0.5rem;
+  border: 1px solid var(--accent-1);
+  border-radius: 99rem;
+  padding: 0.5rem 1rem;
+  max-width: 30rem;
+  cursor: text;
+
+  &:focus-within {
+    border-color: var(--accent-1-hover);
+    outline: 1px solid var(--accent-1-hover);
+  }
+}
+
+.search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+}

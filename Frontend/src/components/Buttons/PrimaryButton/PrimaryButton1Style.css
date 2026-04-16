@@ -8,10 +8,13 @@
   color: var(--accent-1-text);
   font: inherit;
   font-weight: 600;
-  cursor: pointer;
   transition: background-color var(--transition-avg);
 
   &:hover {
     background-color: var(--accent-1-hover);
+  }
+
+  & * {
+    cursor: pointer;
   }
 }

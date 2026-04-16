@@ -10,23 +10,27 @@
 
   svg {
     position: absolute;
-    width: 60%;
+    width: 100%;
   }
 
   &.ok {
     background-color: var(--ok);
+
+    svg {
+      width: 60%;
+    }
   }
   &.warning {
     background-color: var(--warning);
+
+    svg {
+      width: 60%;
+    }
   }
 
   &.close {
     justify-self: end;
     cursor: pointer;
-
-    svg {
-      width: 100%;
-    }
 
     path {
       fill: var(--close);
