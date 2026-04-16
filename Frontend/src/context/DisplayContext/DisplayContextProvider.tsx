@@ -3,10 +3,10 @@ import { DisplayContext } from "./DisplayContext";
 import ResponseDisplay from "../../components/ResponseDisplay/ResponseDisplay";
 
 function ResponseContextProvider({ children }: { children: JSX.Element }) {
-  const { setDisplayList, element } = ResponseDisplay();
+  const { setDisplayItem, element } = ResponseDisplay();
 
   return (
-    <DisplayContext.Provider value={{ setDisplayList }}>
+    <DisplayContext.Provider value={{ setDisplayItem }}>
       {element}
       {children}
     </DisplayContext.Provider>

@@ -1,8 +1,7 @@
 import { createContext } from "react";
-import type { DisplayItemType } from "../../types/commonTypes";
 
 type DisplayContextType = {
-  setDisplayList: React.Dispatch<React.SetStateAction<DisplayItemType[]>>;
+  setDisplayItem: (message: string, ok?: boolean) => void;
 } | null;
 
 export const DisplayContext = createContext<DisplayContextType>(null);

@@ -48,10 +48,20 @@ function ResponseDisplay() {
     }
   };
 
+  const setDisplayItem = (message: string, ok: boolean = true) => {
+    setDisplayList((prev) => [
+      ...prev,
+      { id: crypto.randomUUID(), ok, message },
+    ]);
+  };
+
   return {
-    setDisplayList,
+    setDisplayItem,
     element: (
-      <ul className="response-list">
+      <ul
+        className="response-list"
+        style={{ display: displayList.length === 0 ? "none" : "flex" }}
+      >
         {displayList.map((item) => (
           <li
             key={item.id}
