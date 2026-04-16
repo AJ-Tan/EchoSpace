@@ -1,11 +1,14 @@
 import { Outlet } from "react-router";
-import PageNav from "./PageNav/PageNav";
+import "./appLayoutStyle.css";
+import PageHeader from "./PageHeader/PageHeader";
+import SideNav from "./AsideNav/SideNav";
 
 function AppLayout() {
   return (
     <div className="app">
-      <PageNav />
+      <PageHeader />
       <main>
+        <SideNav />
         <Outlet />
       </main>
     </div>
