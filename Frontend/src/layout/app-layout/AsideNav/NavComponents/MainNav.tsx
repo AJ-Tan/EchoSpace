@@ -4,12 +4,30 @@ import HomeIcon from "../../../../components/Icons/HomeIcon";
 import ProfileIcon from "../../../../components/Icons/ProfileIcon";
 import MessageIcon from "../../../../components/Icons/MessageIcon";
 import PlusIcon from "../../../../components/Icons/PlusIcon";
+import { useAuth } from "../../../../hooks/useAuth";
+import { useDisplay } from "../../../../hooks/useDisplay";
 
 function MainNav({
   sideNavRef,
 }: {
   sideNavRef: React.RefObject<HTMLDivElement | null>;
 }) {
+  const { authNavigation } = useAuth();
+  const { setDisplayItem } = useDisplay();
+
+  const authNav = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    if (!authNavigation()) {
+      e.preventDefault();
+      setDisplayItem("Login to gain access.", false);
+    }
+  };
+
+  const handleStartCommunity = () => {
+    if (!authNavigation()) {
+      return setDisplayItem("Login to gain access.", false);
+    }
+  };
+
   const toggleMenu = () => {
     const sideNavDiv = sideNavRef.current;
     if (sideNavDiv instanceof HTMLDivElement) {
@@ -36,22 +54,22 @@ function MainNav({
           </Link>
         </li>
         <li>
-          <Link to="/">
+          <Link onClick={authNav} to="/profile">
             <ProfileIcon />
             <span>Profile</span>
           </Link>
         </li>
         <li>
-          <Link to="/">
+          <Link onClick={authNav} to="/message">
             <MessageIcon />
             <span>My messages</span>
           </Link>
         </li>
         <li>
-          <Link to="/">
+          <button type="button" onClick={handleStartCommunity}>
             <PlusIcon />
             <span>Start a community</span>
-          </Link>
+          </button>
         </li>
       </ul>
     </nav>

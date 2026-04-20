@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { AuthProvider } from "./context/AuthContext/AuthContextProvider";
-import type { UserType } from "./types/commonTypes";
 import { createHashRouter, RouterProvider } from "react-router";
 import { routes } from "./routes/routes";
 import { authProtected } from "./services/auth";
+import { useAuth } from "./hooks/useAuth";
 
 function App() {
-  const [user, setUser] = useState<UserType>(null);
   const [loading, setLoading] = useState(true);
+  const { user, setUser } = useAuth();
 
   useEffect(() => {
     authProtected().then((data) => {
@@ -17,15 +16,11 @@ function App() {
       }
       setLoading(false);
     });
-  }, []);
+  }, [setUser]);
 
   if (loading) return <div>Loading...</div>;
   const router = createHashRouter(routes(user));
-  return (
-    <AuthProvider user={user} setUser={setUser}>
-      <RouterProvider router={router} />
-    </AuthProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

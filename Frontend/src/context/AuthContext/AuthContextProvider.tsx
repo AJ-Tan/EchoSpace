@@ -1,18 +1,20 @@
-import { type JSX } from "react";
+import { useState, type JSX } from "react";
 import { AuthContext } from "./AuthContext";
 import type { UserType } from "../../types/commonTypes";
 
-export function AuthProvider({
-  user,
-  setUser,
-  children,
-}: {
-  user: UserType;
-  setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
-  children: JSX.Element;
-}) {
+export function AuthProvider({ children }: { children: JSX.Element }) {
+  const [user, setUser] = useState<UserType>(null);
+
+  const authNavigation = () => {
+    if (user) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ user, setUser, authNavigation }}>
       {children}
     </AuthContext.Provider>
   );

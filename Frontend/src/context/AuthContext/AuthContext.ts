@@ -4,6 +4,7 @@ import type { UserType } from "../../types/commonTypes";
 type AuthContextType = {
   user: UserType;
   setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
+  authNavigation: () => boolean;
 };
 
 export const AuthContext = createContext<AuthContextType | null>(null);
