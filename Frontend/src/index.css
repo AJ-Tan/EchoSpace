@@ -12,6 +12,11 @@
   --accent-1-border: rgb(132, 55, 190);
   --accent-1-bg: rgba(170, 59, 255, 0.1);
   --accent-1-text: white;
+  --accent-2: #e5ebee;
+  --accent-2-hover: #d7dee2;
+  --accent-2-border: #888e91;
+  --accent-2-bg: rgba(170, 59, 255, 0.1);
+  --accent-2-text: rgb(0, 0, 0);
   --ok: green;
   --ok-border: green;
   --warning: red;

@@ -1,0 +1,36 @@
+.primary-link-1,
+.primary-link-2 {
+  display: block;
+  border-radius: 10rem;
+  padding-block: 0.5rem;
+  width: 7rem;
+
+  font: inherit;
+  font-weight: 600;
+  transition: background-color var(--transition-avg);
+  text-align: center;
+
+  & * {
+    cursor: pointer;
+  }
+}
+
+.primary-link-1 {
+  background-color: var(--accent-1);
+  color: var(--accent-1-text);
+  border: 1px solid var(--accent-1-border);
+
+  &:hover {
+    background-color: var(--accent-1-hover);
+  }
+}
+
+.primary-link-2 {
+  background-color: var(--accent-2);
+  color: var(--accent-2-text);
+  border: 1px solid var(--accent-2-border);
+
+  &:hover {
+    background-color: var(--accent-2-hover);
+  }
+}
