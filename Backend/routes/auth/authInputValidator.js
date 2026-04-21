@@ -1,4 +1,4 @@
-const { body, validationResult } = require("express-validator");
+const { body } = require("express-validator");
 const { findUser } = require("../../config/database/login-query");
 const { admin_pw } = require("../../utils/env-variables");
 

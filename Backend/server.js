@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const authRoutes = require("./routes/auth/authRoutes");
 const protectedRoutes = require("./routes/protected/protectedRoutes");
+const messageRoutes = require("./routes/messages/messagesRoutes");
 
 const { origin, port } = require("./utils/env-variables");
 
@@ -22,6 +23,7 @@ app.use(passport.initialize());
 
 app.use("/auth", authRoutes);
 app.use("/protected", protectedRoutes);
+app.use("/message", messageRoutes);
 
 app.use((err, req, res, next) => {
   const status = err?.status || 500;
