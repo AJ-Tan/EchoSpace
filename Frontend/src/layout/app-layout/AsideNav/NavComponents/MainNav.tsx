@@ -68,7 +68,7 @@ function MainNav({
         <li>
           <button type="button" onClick={handleStartCommunity}>
             <PlusIcon />
-            <span>Start a community</span>
+            <span>Become a member</span>
           </button>
         </li>
       </ul>

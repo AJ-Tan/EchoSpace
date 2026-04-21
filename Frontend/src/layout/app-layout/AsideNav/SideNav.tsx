@@ -2,7 +2,6 @@ import "./sideNavStyle.css";
 import type React from "react";
 import { useEffect } from "react";
 import MainNav from "./NavComponents/MainNav";
-import CommunityNav from "./NavComponents/CommunityNav";
 
 function SideNav({
   sideNavRef,
@@ -78,7 +77,6 @@ function SideNav({
       >
         <div className="side-nav-content">
           <MainNav sideNavRef={sideNavRef} />
-          <CommunityNav />
         </div>
 
         <footer>

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import SearchInput from "../../../components/Inputs/SearchInput/SearchInput";
-import PrimaryButton1 from "../../../components/Buttons/PrimaryButton/PrimaryButton1";
 import "./pageHeaderStyle.css";
 import MenuIcon from "../../../components/Icons/MenuIcon";
 import type React from "react";
+import PrimaryLink1 from "../../../components/Links/PrimaryLink/PrimaryLink1";
+import PrimaryLink2 from "../../../components/Links/PrimaryLink/PrimaryLink2";
 
 function PageHeader({
   sideNavRef,
@@ -37,7 +38,10 @@ function PageHeader({
         state={[searchInput, setSearchInput]}
         placeholder={"Find Anything"}
       />
-      <PrimaryButton1>Login</PrimaryButton1>
+      <div className="page-header-controls">
+        <PrimaryLink2 to="/signup">Sign up</PrimaryLink2>
+        <PrimaryLink1 to="/signin">Login</PrimaryLink1>
+      </div>
     </header>
   );
 }
