@@ -7,7 +7,7 @@
   outline: 1px solid var(--border);
   border-radius: 0.2rem;
   width: max-content;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--border);
   width: 100%;
   position: relative;
@@ -17,7 +17,6 @@
     top: 50%;
     left: 0.75rem;
     font-size: 1em;
-    padding-inline: 0.4rem;
     cursor: text;
     transform: translateY(-50%);
     transition:
@@ -31,7 +30,7 @@
     outline: none;
     font-size: 1em;
     width: 100%;
-    padding: 1rem 0.75rem;
+    padding: 0.75rem 0.75rem;
     font: inherit;
   }
 }
@@ -51,10 +50,10 @@
 .with-input label {
   position: absolute;
   top: 0;
-  left: 0.3rem;
+  left: 0.7rem;
   transform: translateY(-50%);
   background-color: white;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
 }
 
 .warning-message {
