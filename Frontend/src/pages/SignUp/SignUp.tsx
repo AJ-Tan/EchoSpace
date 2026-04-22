@@ -1,12 +1,14 @@
 import { useRef, useState } from "react";
 import FormInput from "../../components/Inputs/FormInput/FormInput";
 import { authSignUp } from "../../services/auth";
-import "./signUp.css";
 import { validateUserInformation } from "../../services/input-validation";
 import { useNavigate } from "react-router";
 import PrimaryButton1 from "../../components/Buttons/PrimaryButton/PrimaryButton1";
 import AvatarButton from "../../components/Buttons/AvatarButton/AvatarButton";
+import PageLogo from "../../components/PageLogo/PageLogo";
 import LoadingForm from "../../components/Loading/LoadingForm";
+import "./signUpStyles.css";
+import { useDisplay } from "../../hooks/useDisplay";
 
 type ValidateItem = {
   params: string;
@@ -29,6 +31,8 @@ function SignUp() {
   const [active, setActive] = useState(1);
   const navigate = useNavigate();
   const groupRef = useRef<Record<number, HTMLDivElement | null>>({});
+  const { setDisplayItem } = useDisplay();
+  const [loading, setLoading] = useState(false);
 
   const validateInputs: ValidateInputs = {
     1: {
@@ -59,6 +63,7 @@ function SignUp() {
   };
 
   const nextGroup = async () => {
+    setLoading(true);
     const data = await validateUserInformation(validateInputs[active]);
     if (!data.ok) {
       setErrorList(
@@ -68,6 +73,7 @@ function SignUp() {
           return prev;
         }, {}),
       );
+      setLoading(false);
     } else {
       setErrorList({});
       const nextIndex = active + 1;
@@ -83,6 +89,7 @@ function SignUp() {
         },
         { once: true },
       );
+      setLoading(false);
     }
   };
   const previousGroup = () => {
@@ -122,13 +129,19 @@ function SignUp() {
         }, {}),
       );
     } else {
-      navigate("/signin", { replace: true });
+      setDisplayItem(
+        "Register success, you can login with your account.",
+        true,
+      );
+      navigate("/auth/signin", { replace: true });
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* <LoadingForm /> */}
+      {loading && <LoadingForm />}
+
+      <PageLogo />
       <header>
         <h1>{validateInputs[active].title}</h1>
         <p>{validateInputs[active].description}</p>
@@ -262,14 +275,16 @@ function SignUp() {
             type="password"
           />
         </div>
-        {active !== 1 && (
-          <PrimaryButton1 onclick={previousGroup}>Back</PrimaryButton1>
-        )}
-        {Object.keys(validateInputs).length !== active ? (
-          <PrimaryButton1 onclick={nextGroup}>Next</PrimaryButton1>
-        ) : (
-          <PrimaryButton1 type="submit">Register</PrimaryButton1>
-        )}
+        <div className="form-controls">
+          {active !== 1 && (
+            <PrimaryButton1 onclick={previousGroup}>Back</PrimaryButton1>
+          )}
+          {Object.keys(validateInputs).length !== active ? (
+            <PrimaryButton1 onclick={nextGroup}>Next</PrimaryButton1>
+          ) : (
+            <PrimaryButton1 type="submit">Register</PrimaryButton1>
+          )}
+        </div>
       </div>
     </form>
   );

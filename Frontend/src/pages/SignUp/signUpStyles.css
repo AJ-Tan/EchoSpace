@@ -2,12 +2,14 @@
   display: none;
 
   &.active {
-    display: block;
+    display: grid;
   }
 }
 
 .form-content {
   position: relative;
+  overflow: hidden;
+  padding: 0.25rem;
 }
 
 .group-avatar {
@@ -17,4 +19,8 @@
   gap: 0.75rem;
   max-width: 20rem;
   justify-content: center;
+}
+
+.form-group {
+  gap: 1rem;
 }

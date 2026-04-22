@@ -1,10 +1,14 @@
 import { useState } from "react";
 import SearchInput from "../../../components/Inputs/SearchInput/SearchInput";
-import "./pageHeaderStyle.css";
 import MenuIcon from "../../../components/Icons/MenuIcon";
 import type React from "react";
 import PrimaryLink1 from "../../../components/Links/PrimaryLink/PrimaryLink1";
 import PrimaryLink2 from "../../../components/Links/PrimaryLink/PrimaryLink2";
+import PageLogo from "../../../components/PageLogo/PageLogo";
+import { useAuth } from "../../../hooks/useAuth";
+import AvatarButton from "../../../components/Buttons/AvatarButton/AvatarButton";
+import UserMenu from "./components/UserMenu";
+import "./pageHeaderStyle.css";
 
 function PageHeader({
   sideNavRef,
@@ -12,8 +16,10 @@ function PageHeader({
   sideNavRef: React.RefObject<HTMLDivElement | null>;
 }) {
   const [searchInput, setSearchInput] = useState("");
+  const { user } = useAuth();
+  const [displayUserMenu, setDisplayUserMenu] = useState(false);
 
-  const toggleMenu = () => {
+  const toggleNavMenu = () => {
     const sideNavDiv = sideNavRef.current;
     if (sideNavDiv instanceof HTMLDivElement) {
       sideNavDiv.ariaExpanded =
@@ -21,26 +27,45 @@ function PageHeader({
     }
   };
 
+  const toggleUserMenu = () => {
+    setDisplayUserMenu((prev) => !prev);
+  };
+
   return (
     <header className="page-header">
-      <div className="page-logo">
+      <div className="page-header-left">
         <button
           className="btn-header-menu"
           type="button"
-          onClick={toggleMenu}
+          onClick={toggleNavMenu}
           aria-controls="side-nav"
         >
           <MenuIcon />
         </button>
-        <span>EchoSpace</span>
+        <PageLogo />
       </div>
       <SearchInput
         state={[searchInput, setSearchInput]}
         placeholder={"Find Anything"}
       />
-      <div className="page-header-controls">
-        <PrimaryLink2 to="/signup">Sign up</PrimaryLink2>
-        <PrimaryLink1 to="/signin">Login</PrimaryLink1>
+      <div className="page-header-right">
+        {user ? (
+          <div className="avatar-container" onClick={toggleUserMenu}>
+            <div className="user-details">
+              <span>{user.name}</span>
+              <span>@{user.username}</span>
+            </div>
+            <AvatarButton id={user.avatar_id} />
+            {displayUserMenu && <UserMenu toggleUserMenu={toggleUserMenu} />}
+          </div>
+        ) : (
+          <>
+            <PrimaryLink2 className="sign-up" to="/auth/signup">
+              Sign up
+            </PrimaryLink2>
+            <PrimaryLink1 to="/auth/signin">Login</PrimaryLink1>
+          </>
+        )}
       </div>
     </header>
   );

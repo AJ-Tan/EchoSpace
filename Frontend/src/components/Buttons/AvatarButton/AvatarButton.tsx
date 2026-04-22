@@ -7,7 +7,7 @@ type AvatarButtonType = {
   onclick?: () => void;
 };
 
-function AvatarButton({ id, className, onclick }: AvatarButtonType) {
+function AvatarButton({ id, className = "", onclick }: AvatarButtonType) {
   return (
     <button
       className={`btn-avatar ${className}`}

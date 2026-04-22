@@ -8,6 +8,7 @@ import Home from "../pages/App/Home/Home";
 import Profile from "../pages/App/Profile/Profile";
 import Message from "../pages/App/Message/Message";
 import History from "../pages/App/History/History";
+import AuthLayout from "../layout/auth-layout/AuthLayout";
 
 type RoutesType = (user: UserType) => RouteObject[];
 
@@ -36,20 +37,30 @@ export const routes: RoutesType = (user) => {
       ],
     },
     {
-      path: "/signin",
-      element: (
-        <PublicRoute user={user}>
-          <SignIn />
-        </PublicRoute>
-      ),
-    },
-    {
-      path: "/signup",
-      element: (
-        <PublicRoute user={user}>
-          <SignUp />
-        </PublicRoute>
-      ),
+      path: "/auth",
+      element: <AuthLayout />,
+      children: [
+        {
+          path: "/auth",
+          element: <SignIn />,
+        },
+        {
+          path: "/auth/signin",
+          element: (
+            <PublicRoute user={user}>
+              <SignIn />
+            </PublicRoute>
+          ),
+        },
+        {
+          path: "/auth/signup",
+          element: (
+            <PublicRoute user={user}>
+              <SignUp />
+            </PublicRoute>
+          ),
+        },
+      ],
     },
   ];
 };

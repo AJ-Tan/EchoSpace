@@ -1,0 +1,17 @@
+.form-content {
+  display: grid;
+  gap: 1rem;
+
+  a {
+    font-size: 0.9rem;
+  }
+}
+
+.form-controls {
+  a {
+    transition: transform 0.05s;
+  }
+  a:hover {
+    transform: scale(1.01);
+  }
+}

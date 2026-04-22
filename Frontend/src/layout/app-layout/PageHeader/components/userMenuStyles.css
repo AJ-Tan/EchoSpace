@@ -1,0 +1,29 @@
+.user-menu {
+  position: absolute;
+  top: calc(100% + 1rem);
+  right: 0;
+  border-radius: 0.25rem;
+  background-color: var(--bg);
+  width: 8rem;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.user-menu-list {
+  list-style-type: none;
+
+  button {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 300;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    padding: 0.5rem 1rem;
+
+    &:hover {
+      background-color: var(--bg-hover);
+    }
+  }
+}
