@@ -42,7 +42,9 @@ module.exports.signIn = async (req, res, next) => {
       message: "Login success.",
       user: {
         id: user.id,
+        username: user.username,
         name: `${user.first_name} ${user.last_name}`,
+        avatar_id: user.avatar_id,
         role: user.role,
       },
     });

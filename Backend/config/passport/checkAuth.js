@@ -10,7 +10,9 @@ module.exports.checkAuth = (req, res, next) => {
           .json({ ok: false, message: "Token is invalid or expired." });
       req.user = {
         id: user.id,
+        username: user.username,
         name: `${user.first_name} ${user.last_name}`,
+        avatar_id: user.avatar_id,
         role: user.role,
       };
 
