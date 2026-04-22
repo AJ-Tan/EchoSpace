@@ -1,8 +1,17 @@
 import { Link } from "react-router";
 import "./primaryLink.css";
-function PrimaryLink1({ to, children }: { to: string; children: string }) {
+import type { JSX } from "react";
+function PrimaryLink1({
+  to,
+  className = "",
+  children,
+}: {
+  to: string;
+  className?: string;
+  children: string | JSX.Element;
+}) {
   return (
-    <Link className="primary-link-1" to={to}>
+    <Link className={`primary-link-1 ${className}`} to={to}>
       {children}
     </Link>
   );

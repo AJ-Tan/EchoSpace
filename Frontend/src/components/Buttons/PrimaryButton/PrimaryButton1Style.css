@@ -1,8 +1,8 @@
 .primary-button-1 {
   border: 1px solid var(--accent-1-border);
-  border-radius: 10rem;
-  padding-block: 0.5rem;
-  width: 7rem;
+  border-radius: 10em;
+  padding-block: 0.5em;
+  width: 7em;
 
   background-color: var(--accent-1);
   color: var(--accent-1-text);
