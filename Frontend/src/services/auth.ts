@@ -33,3 +33,25 @@ export const authProtected = async () => {
   const data = await res.json();
   return data;
 };
+
+type AuthSwitchMemberType = (
+  id: number,
+  membershipPasscode: string,
+) => Promise<{
+  ok: boolean;
+  errors: Record<string, string>[];
+  message: string;
+}>;
+
+export const authSwitchMember: AuthSwitchMemberType = async (
+  id,
+  membershipPasscode,
+) => {
+  const res = await api(
+    "/auth/switch-member",
+    "POST",
+    JSON.stringify({ id, membershipPasscode }),
+  );
+  const data = await res.json();
+  return data;
+};

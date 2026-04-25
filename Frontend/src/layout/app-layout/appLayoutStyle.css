@@ -20,13 +20,32 @@ main {
   position: relative;
 }
 
-/* main {
-  display: flex;
+.main-content {
+  padding-block: 1rem;
+  width: 100%;
+}
 
-  & > :nth-child(1) {
+.main-content > * {
+  width: 55rem;
+  max-width: calc(100% - 5rem);
+  margin-inline: auto;
+
+  @media screen and (max-width: 1024px) {
+    max-width: calc(100% - 2rem);
+  }
+}
+
+.member-notification {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  padding: 1rem 1.5rem;
+  box-shadow: var(--shadow);
+  margin-block-end: 1rem;
+
+  & > *:nth-child(2) {
     flex-shrink: 0;
   }
-  & > :nth-child(2) {
-    flex: 1;
-  }
-} */
+}

@@ -80,7 +80,7 @@
     background-color: var(--bg-hover);
   }
 
-  & > li.active {
+  & > li a.active {
     background-color: var(--bg-active);
 
     g {

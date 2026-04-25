@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { NavLink } from "react-router";
 import MenuIcon from "../../../../components/Icons/MenuIcon";
 import HomeIcon from "../../../../components/Icons/HomeIcon";
 import ProfileIcon from "../../../../components/Icons/ProfileIcon";
@@ -47,28 +47,39 @@ function MainNav({
         <MenuIcon />
       </button>
       <ul>
-        <li className="active">
-          <Link to="/">
+        <li>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <HomeIcon />
             <span>Home</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link onClick={authNav} to="/profile">
+          <NavLink
+            onClick={authNav}
+            to="/profile"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <ProfileIcon />
             <span>Profile</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link onClick={authNav} to="/message">
+          <NavLink
+            onClick={authNav}
+            to="/history"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <MessageIcon />
-            <span>My messages</span>
-          </Link>
+            <span>History</span>
+          </NavLink>
         </li>
         <li>
           <button type="button" onClick={handleStartCommunity}>
             <PlusIcon />
-            <span>Become a member</span>
+            <span>Write Message</span>
           </button>
         </li>
       </ul>
