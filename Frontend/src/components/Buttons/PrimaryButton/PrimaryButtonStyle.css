@@ -1,0 +1,33 @@
+[class^="primary-button"] {
+  border-radius: 10em;
+  padding-block: 0.5em;
+  width: 7em;
+
+  font: inherit;
+  font-weight: 600;
+  transition: background-color var(--transition-avg);
+
+  & * {
+    cursor: pointer;
+  }
+}
+
+.primary-button-1 {
+  border: 1px solid var(--accent-1-border);
+  background-color: var(--accent-1);
+  color: var(--accent-1-text);
+
+  &:hover {
+    background-color: var(--accent-1-hover);
+  }
+}
+
+.primary-button-2 {
+  border: 1px solid var(--accent-2-border);
+  background-color: var(--accent-2);
+  color: var(--accent-2-text);
+
+  &:hover {
+    background-color: var(--accent-2-hover);
+  }
+}

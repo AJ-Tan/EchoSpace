@@ -10,7 +10,7 @@ type PrimaryButton1Props = {
   children?: string | JSX.Element;
 };
 
-function PrimaryButton1({
+function PrimaryButton2({
   type = "button",
   onclick = () => {},
   className = "",
@@ -18,7 +18,7 @@ function PrimaryButton1({
 }: PrimaryButton1Props) {
   return (
     <button
-      className={`primary-button-1 ${className}`}
+      className={`primary-button-2 ${className}`}
       type={type}
       onClick={onclick}
     >
@@ -27,4 +27,4 @@ function PrimaryButton1({
   );
 }
 
-export default PrimaryButton1;
+export default PrimaryButton2;

@@ -12,7 +12,6 @@ function App() {
   useEffect(() => {
     authProtected().then((data) => {
       if (data.ok) {
-        console.log(data);
         setUser(data.user);
       }
       setLoading(false);
