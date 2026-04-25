@@ -1,6 +1,6 @@
 const { body } = require("express-validator");
 const { findUser } = require("../../config/database/login-query");
-const { admin_pw } = require("../../utils/env-variables");
+const { admin_pw, membership_passcode } = require("../../utils/env-variables");
 
 const msg = {
   requiredMsg: (name) => `${name} is required.`,
@@ -62,6 +62,15 @@ module.exports.validateAdmin = [
     .optional({ checkFalsy: true })
     .equals(admin_pw)
     .withMessage("Invalid admin password."),
+];
+
+module.exports.validatePasscode = [
+  body("membershipPasscode").custom((val) => {
+    if (val !== membership_passcode) {
+      throw new Error("Invalid passcode.");
+    }
+    return true;
+  }),
 ];
 
 module.exports.validateRegister = [

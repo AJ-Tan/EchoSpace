@@ -40,3 +40,21 @@ module.exports.insertUser = async ({
     throw new Error(err);
   }
 };
+
+module.exports.updateRole = async (id) => {
+  try {
+    const { rows } = await pool.query(
+      "SELECT * FROM members_only.login_info WHERE id=$1 AND role='user'",
+      [id],
+    );
+
+    if (rows.length > 0) {
+      await pool.query(
+        "UPDATE members_only.login_info SET role='member' WHERE id=$1",
+        [id],
+      );
+    }
+  } catch (err) {
+    throw new Error(err);
+  }
+};

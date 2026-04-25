@@ -1,13 +1,18 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { secret } = require("../../utils/env-variables");
-const { findUser, insertUser } = require("../../config/database/login-query");
+const {
+  findUser,
+  insertUser,
+  updateRole,
+} = require("../../config/database/login-query");
 const {
   validateRegister,
   validateUserInformation,
   validateLoginCredentials,
   validateAdmin,
   validateAvatar,
+  validatePasscode,
 } = require("./authInputValidator");
 const { validationResult } = require("express-validator");
 
@@ -113,6 +118,25 @@ module.exports.signUp = [
     try {
       await insertUser(req.body);
       res.status(201).json({ ok: true, message: "Signup success." });
+    } catch (err) {
+      next(err);
+    }
+  },
+];
+
+module.exports.switchMember = [
+  validatePasscode,
+  async (req, res, next) => {
+    const result = validationResult(req);
+
+    if (!result.isEmpty())
+      return res.json({ ok: false, errors: result.array() });
+
+    try {
+      await updateRole(req.body.id);
+      res
+        .status(200)
+        .json({ ok: true, message: "Successfully became a member." });
     } catch (err) {
       next(err);
     }
