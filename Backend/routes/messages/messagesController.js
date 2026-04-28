@@ -5,6 +5,7 @@ const {
   dbInsertMessage,
   dbUpdateMessage,
   dbDeleteMessage,
+  dbUserMessage,
 } = require("../../config/database/messages-query");
 const { checkAuth } = require("../../config/passport/checkAuth");
 const { validateMessage } = require("./messagesValidator");
@@ -14,6 +15,20 @@ module.exports.getAllMessages = [
   async (req, res, next) => {
     try {
       const rows = await dbAllMessages();
+
+      res.status(200).json({ ok: true, rows });
+    } catch (err) {
+      next(err);
+    }
+  },
+];
+
+module.exports.getUserMessages = [
+  checkAuth,
+  async (req, res, next) => {
+    try {
+      const user_id = req.params.user_id;
+      const rows = await dbUserMessage(user_id);
 
       res.status(200).json({ ok: true, rows });
     } catch (err) {

@@ -3,8 +3,28 @@ const pool = require("./pool");
 module.exports.dbAllMessages = async () => {
   try {
     const { rows } = await pool.query(
-      `SELECT * FROM members_only.messages 
-      WHERE msg.is_archived = false ORDER BY msg.id DESC`,
+      `SELECT 
+      msg.id msg_id, user_id, title, message, is_archived, created_at, last_modified,
+      username, CONCAT(first_name,' ', last_name) name, avatar_id
+      FROM members_only.messages msg JOIN members_only.login_info login ON msg.user_id = login.id
+      WHERE is_archived = false ORDER BY msg.id DESC`,
+    );
+
+    return rows;
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+module.exports.dbUserMessage = async (user_id) => {
+  try {
+    const { rows } = await pool.query(
+      `SELECT 
+      msg.id msg_id, user_id, title, message, is_archived, created_at, last_modified,
+      username, CONCAT(first_name,' ', last_name) name, avatar_id
+      FROM members_only.messages msg JOIN members_only.login_info login ON msg.user_id = login.id
+      WHERE is_archived = false AND user_id=$1 ORDER BY msg.id DESC`,
+      [user_id],
     );
 
     return rows;
@@ -16,7 +36,11 @@ module.exports.dbAllMessages = async () => {
 module.exports.dbSelectedMessage = async (id) => {
   try {
     const { rows } = await pool.query(
-      `SELECT * FROM members_only.messages WHERE id = $1`,
+      `SELECT 
+      msg.id msg_id, user_id, title, message, is_archived, created_at, last_modified,
+      username, CONCAT(first_name,' ', last_name) name, avatar_id
+      FROM members_only.messages msg JOIN members_only.login_info login ON msg.user_id = login.id
+      WHERE is_archived = false AND msg.id = $1`,
       [id],
     );
 
@@ -26,12 +50,7 @@ module.exports.dbSelectedMessage = async (id) => {
   }
 };
 
-module.exports.dbInsertMessage = async ({
-  community_id,
-  user_id,
-  title,
-  message,
-}) => {
+module.exports.dbInsertMessage = async ({ user_id, title, message }) => {
   try {
     await pool.query(
       `INSERT INTO members_only.messages 
@@ -40,6 +59,7 @@ module.exports.dbInsertMessage = async ({
     ($1, $2, $3, $4)`,
       [user_id, title, message, new Date()],
     );
+    console.log(user_id, title, message);
   } catch (err) {
     throw new Error(err);
   }

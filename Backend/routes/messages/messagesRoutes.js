@@ -5,13 +5,15 @@ const {
   insertMessage,
   updateMessage,
   deleteMessage,
+  getUserMessages,
 } = require("./messagesController");
 const router = express.Router();
 
 router.get("/", getAllMessages);
 router.get("/:message_id", getSelectedMessage);
-router.post("/action", insertMessage);
-router.post("/action/:id", updateMessage);
-router.post("/action/delete/:id", deleteMessage);
+router.get("/user/:user_id", getUserMessages);
+router.post("/", insertMessage);
+router.post("/:id", updateMessage);
+router.post("/delete/:id", deleteMessage);
 
 module.exports = router;
