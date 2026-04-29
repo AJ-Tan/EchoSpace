@@ -1,0 +1,60 @@
+.message-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-message-menu {
+  border-radius: 100%;
+  border: none;
+  padding: 0.25rem;
+  background-color: transparent;
+
+  & > div {
+    width: 0.8rem;
+  }
+
+  &:hover {
+    background-color: var(--border);
+  }
+}
+
+.message-list {
+  list-style-type: none;
+}
+
+.message-details {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+}
+
+.details-hidden {
+  font-style: italic;
+}
+
+.icon-avatar {
+  width: 1.25rem;
+}
+
+.message-list li {
+  display: grid;
+  gap: 0.25rem;
+  padding-block: 0.5rem;
+  padding-inline: 0.75rem;
+  border-top: 1px solid var(--border);
+
+  &:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  & > h2 {
+    font-size: 1.1rem;
+  }
+
+  & > span {
+    font-size: 0.9rem;
+    white-space: pre-line;
+  }
+}
