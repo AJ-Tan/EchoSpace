@@ -81,11 +81,9 @@ module.exports.updateMessage = [
   async (req, res, next) => {
     try {
       const result = validationResult(req);
-
       if (!result.isEmpty())
         return res.status(401).json({ ok: false, errors: result.array() });
-
-      await dbUpdateMessage(req.body);
+      await dbUpdateMessage(req.params.id, req.body);
       res.status(200).json({ ok: true, message: "Update message success." });
     } catch (err) {
       next(err);

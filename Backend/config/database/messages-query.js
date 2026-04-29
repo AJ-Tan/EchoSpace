@@ -65,7 +65,7 @@ module.exports.dbInsertMessage = async ({ user_id, title, message }) => {
   }
 };
 
-module.exports.dbUpdateMessage = async ({ id, title, message }) => {
+module.exports.dbUpdateMessage = async (id, { title, message }) => {
   try {
     await pool.query(
       `UPDATE members_only.messages SET title=$1, message=$2, last_modified=$3 WHERE id=$4`,
