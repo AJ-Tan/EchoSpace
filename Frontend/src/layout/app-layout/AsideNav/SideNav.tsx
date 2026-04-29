@@ -68,22 +68,24 @@ function SideNav({
   }, [sideNavRef]);
 
   return (
-    <div className="side-nav-overlay" onClick={hideNav}>
-      <div
-        id="side-nav"
-        ref={sideNavRef}
-        className="side-nav"
-        aria-expanded="true"
-      >
-        <div className="side-nav-content">
-          <MainNav sideNavRef={sideNavRef} />
-        </div>
+    <>
+      <div className="side-nav-overlay" onClick={hideNav}>
+        <div
+          id="side-nav"
+          ref={sideNavRef}
+          className="side-nav"
+          aria-expanded="true"
+        >
+          <div className="side-nav-content">
+            <MainNav sideNavRef={sideNavRef} />
+          </div>
 
-        <footer>
-          <span>AJ Tan ⓒ 2026. All rights reserved.</span>
-        </footer>
+          <footer>
+            <span>AJ Tan ⓒ 2026. All rights reserved.</span>
+          </footer>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
