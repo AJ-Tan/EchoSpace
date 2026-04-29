@@ -59,7 +59,6 @@ module.exports.dbInsertMessage = async ({ user_id, title, message }) => {
     ($1, $2, $3, $4)`,
       [user_id, title, message, new Date()],
     );
-    console.log(user_id, title, message);
   } catch (err) {
     throw new Error(err);
   }
@@ -76,7 +75,7 @@ module.exports.dbUpdateMessage = async (id, { title, message }) => {
   }
 };
 
-module.exports.dbDeleteMessage = async ({ id }) => {
+module.exports.dbDeleteMessage = async (id) => {
   try {
     await pool.query(`DELETE FROM members_only.messages WHERE id=$1`, [id]);
   } catch (err) {

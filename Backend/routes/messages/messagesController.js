@@ -10,32 +10,26 @@ const {
 const { checkAuth } = require("../../config/passport/checkAuth");
 const { validateMessage } = require("./messagesValidator");
 
-module.exports.getAllMessages = [
-  checkAuth,
-  async (req, res, next) => {
-    try {
-      const rows = await dbAllMessages();
+module.exports.getAllMessages = async (req, res, next) => {
+  try {
+    const rows = await dbAllMessages();
 
-      res.status(200).json({ ok: true, rows });
-    } catch (err) {
-      next(err);
-    }
-  },
-];
+    res.status(200).json({ ok: true, rows });
+  } catch (err) {
+    next(err);
+  }
+};
 
-module.exports.getUserMessages = [
-  checkAuth,
-  async (req, res, next) => {
-    try {
-      const user_id = req.params.user_id;
-      const rows = await dbUserMessage(user_id);
+module.exports.getUserMessages = async (req, res, next) => {
+  try {
+    const user_id = req.params.user_id;
+    const rows = await dbUserMessage(user_id);
 
-      res.status(200).json({ ok: true, rows });
-    } catch (err) {
-      next(err);
-    }
-  },
-];
+    res.status(200).json({ ok: true, rows });
+  } catch (err) {
+    next(err);
+  }
+};
 
 module.exports.getSelectedMessage = [
   checkAuth,
@@ -95,7 +89,7 @@ module.exports.deleteMessage = [
   checkAuth,
   async (req, res, next) => {
     try {
-      await dbDeleteMessage(req.body);
+      await dbDeleteMessage(req.params.id);
       res.status(200).json({ ok: true, message: "Delete message success." });
     } catch (err) {
       next(err);
