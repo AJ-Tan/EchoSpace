@@ -48,3 +48,11 @@
     }
   }
 }
+
+.icon-avatar {
+  border-radius: 100%;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1/1;
+  max-width: 2.5rem;
+}
