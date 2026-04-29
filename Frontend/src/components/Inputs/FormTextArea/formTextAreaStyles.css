@@ -24,13 +24,19 @@
       left var(--transition-fast);
   }
 
-  input {
+  textarea {
     border: none;
     outline: none;
     font-size: 1em;
     width: 100%;
-    padding: 0.65rem 0.75rem;
+    height: 8rem;
+    padding: 0.5rem 0.75rem;
     font: inherit;
+    resize: none;
+  }
+
+  textarea::placeholder {
+    color: var(--border);
   }
 }
 
