@@ -4,13 +4,25 @@ import "./messageListStyles.css";
 import MessageMenu from "./MessageMenu";
 import useMessage from "../../../../hooks/useMessage";
 import { useAuth } from "../../../../hooks/useAuth";
+import { useEffect, useState } from "react";
 
 function MessageList() {
   const { msgLoading, messageList } = useMessage();
   const { user } = useAuth();
+  const [loading, setLoading] = useState(true);
 
-  if (msgLoading) return <>Loading</>;
-  if (!messageList) return <>No Message</>;
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 100);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [setLoading]);
+
+  if (msgLoading || loading) return <>Loading</>;
+  if (messageList?.length === 0) return <>No message</>;
   return (
     <ul className="message-list">
       {messageList.map((item) => (

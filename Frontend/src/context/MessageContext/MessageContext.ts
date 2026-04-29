@@ -2,7 +2,7 @@ import { createContext } from "react";
 import type { MessageType } from "../../types/commonTypes";
 
 type MessageContextType = {
-  messageList: MessageType[] | null;
+  messageList: MessageType[];
   msgLoading: boolean;
   loadMessage: (user_id?: string) => void;
   refreshList: () => void;
@@ -12,6 +12,7 @@ type MessageContextType = {
     messageValue?: string,
     id?: string,
   ) => void;
+  deleteMessageItem: (id: number) => Promise<{ ok: boolean; message: string }>;
 };
 
 export const MessageContext = createContext<MessageContextType | null>(null);

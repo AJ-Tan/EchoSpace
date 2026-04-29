@@ -1,5 +1,5 @@
 import { useEffect, useState, type JSX } from "react";
-import { getMessage } from "../../services/message";
+import { deleteMessage, getMessage } from "../../services/message";
 import { MessageContext } from "./MessageContext";
 import WriteMessage from "./components/WriteMessage";
 
@@ -9,19 +9,19 @@ function MessageContextProvider({
   children: JSX.Element[] | JSX.Element;
 }) {
   const [userId, setUserId] = useState("");
-  const [messageList, setMessageList] = useState(null);
+  const [messageList, setMessageList] = useState([]);
   const [msgLoading, setMsgLoading] = useState(true);
 
   useEffect(() => {
-    getMessage().then((data) => {
+    setMsgLoading(true);
+    getMessage({ user_id: userId }).then((data) => {
       setMessageList(data.rows);
       setMsgLoading(false);
     });
-  }, []);
+  }, [userId]);
 
   const loadMessage = (user_id = "") => {
     setUserId(String(user_id));
-    refreshList();
   };
 
   const refreshList = async () => {
@@ -36,6 +36,12 @@ function MessageContextProvider({
     return data.item;
   };
 
+  const deleteMessageItem = async (id: number) => {
+    const data = await deleteMessage(id);
+    refreshList();
+    return data;
+  };
+
   const { openWriteDialog, WriteDialogElement } = WriteMessage(refreshList);
   return (
     <MessageContext
@@ -46,6 +52,7 @@ function MessageContextProvider({
         refreshList,
         getMessageItem,
         openWriteDialog,
+        deleteMessageItem,
       }}
     >
       {children}

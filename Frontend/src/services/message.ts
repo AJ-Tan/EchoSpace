@@ -41,3 +41,11 @@ export const getMessage = async ({
   const data = await res.json();
   return data;
 };
+
+export const deleteMessage = async (
+  id: number,
+): Promise<{ ok: boolean; message: string }> => {
+  const res = await api(`/message/delete/${id}`, "POST");
+  const data = await res.json();
+  return data;
+};
