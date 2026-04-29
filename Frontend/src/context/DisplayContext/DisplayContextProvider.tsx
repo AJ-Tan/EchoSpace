@@ -6,10 +6,10 @@ function ResponseContextProvider({ children }: { children: JSX.Element }) {
   const { setDisplayItem, element } = ResponseDisplay();
 
   return (
-    <DisplayContext.Provider value={{ setDisplayItem }}>
+    <DisplayContext value={{ setDisplayItem }}>
       {element}
       {children}
-    </DisplayContext.Provider>
+    </DisplayContext>
   );
 }
 

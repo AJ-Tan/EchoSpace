@@ -1,3 +1,35 @@
+*:has(.pop-menu) {
+  position: relative;
+}
+
+.pop-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  display: none;
+  background-color: var(--bg);
+  box-shadow: var(--shadow);
+  flex-direction: column;
+  font-size: 0.7rem;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  animation: pop-open var(--transition-fast) linear;
+
+  &[aria-expanded="true"] {
+    display: flex;
+  }
+
+  & button {
+    border: none;
+    background-color: transparent;
+    padding: 0.15rem 0.75rem;
+  }
+
+  & button:hover {
+    background-color: var(--border);
+  }
+}
+
 .slide-out-toLeft-abs {
   position: absolute;
   top: -1rem;
@@ -82,5 +114,27 @@
   }
   to {
     width: 0%;
+  }
+}
+
+@keyframes pop-open {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pop-close {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.7);
+    opacity: 0;
   }
 }

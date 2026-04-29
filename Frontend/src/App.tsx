@@ -18,7 +18,7 @@ function App() {
     });
   }, [setUser]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div>Initial Loading...</div>;
   const router = createHashRouter(routes(user));
   return <RouterProvider router={router} />;
 }

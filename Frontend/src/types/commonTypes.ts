@@ -11,3 +11,13 @@ export type DisplayItemType = {
   ok: boolean;
   message: string;
 };
+
+export type MessageType = {
+  msg_id: number;
+  user_id: number;
+  title: string;
+  message: string;
+  is_archived: boolean;
+  created_at: string;
+  last_modified: null | string;
+} & UserType;

@@ -2,7 +2,7 @@ import { useState, type JSX } from "react";
 import { AuthContext } from "./AuthContext";
 import type { UserType } from "../../types/commonTypes";
 
-export function AuthProvider({ children }: { children: JSX.Element }) {
+export function AuthContextProvider({ children }: { children: JSX.Element }) {
   const [user, setUser] = useState<UserType>(null);
 
   const authNavigation = () => {
@@ -14,8 +14,8 @@ export function AuthProvider({ children }: { children: JSX.Element }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, authNavigation }}>
+    <AuthContext value={{ user, setUser, authNavigation }}>
       {children}
-    </AuthContext.Provider>
+    </AuthContext>
   );
 }
