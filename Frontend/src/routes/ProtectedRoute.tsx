@@ -8,7 +8,7 @@ type ProtectedRouteProps = {
 };
 
 function ProtectedRoute({ user, children }: ProtectedRouteProps) {
-  if (!user) return <Navigate to="/signin" replace />;
+  if (!user) return <Navigate to="/" replace />;
   return children;
 }
 
