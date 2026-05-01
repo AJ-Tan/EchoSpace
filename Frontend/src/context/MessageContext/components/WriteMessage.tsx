@@ -7,19 +7,21 @@ import FormInput from "../../../components/Inputs/FormInput/FormInput";
 import FormTextArea from "../../../components/Inputs/FormTextArea/FormTextArea";
 import PrimaryButton2 from "../../../components/Buttons/PrimaryButton/PrimaryButton2";
 import PrimaryButton1 from "../../../components/Buttons/PrimaryButton/PrimaryButton1";
+import LoadingForm from "../../../components/Loading/LoadingForm/LoadingForm";
 
 function WriteMessage(refreshList: (user_id?: string) => void) {
   const [msgId, setMsgId] = useState("");
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
   const [errorList, setErrorList] = useState<Record<string, string[]>>({});
+  const [loading, setLoading] = useState(false);
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const { user } = useAuth();
   const { setDisplayItem } = useDisplay();
 
   const openWriteDialog = (titleValue = "", messageValue = "", id = "") => {
+    if (!user) return setDisplayItem("Login to gain access.", false);
     const dialogElement = dialogRef.current;
-
     setMsgId(id);
     setTitle(titleValue);
     setMessage(messageValue);
@@ -41,8 +43,10 @@ function WriteMessage(refreshList: (user_id?: string) => void) {
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     if (!user) return;
     const data = await writeMessage(user.id, title, message, msgId);
+    setLoading(false);
     if (!data.ok) {
       return setErrorList(
         data.errors.reduce<Record<string, string[]>>((prev, err) => {
@@ -65,6 +69,7 @@ function WriteMessage(refreshList: (user_id?: string) => void) {
         close={closeWriteDialog}
         onsubmit={handleSubmit}
       >
+        {loading ? <LoadingForm /> : <></>}
         <h2>Post Message</h2>
         <FormInput
           id="title"
