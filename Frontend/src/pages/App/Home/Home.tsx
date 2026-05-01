@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import useMessage from "../../../hooks/useMessage";
 import MessageList from "./HomeComponents/MessageList";
-import "./homeStyle.css";
+import "./homeStyles.css";
 
 function Home() {
   const { loadMessage } = useMessage();
