@@ -5,11 +5,15 @@ import MessageMenu from "./MessageMenu";
 import useMessage from "../../../../hooks/useMessage";
 import { useAuth } from "../../../../hooks/useAuth";
 import { useEffect, useState } from "react";
+import LoadingComponent from "../../../../components/Loading/LoadingComponent/LoadingComponent";
+import PrimaryButton1 from "../../../../components/Buttons/PrimaryButton/PrimaryButton1";
+import PrimaryLink1 from "../../../../components/Links/PrimaryLink/PrimaryLink1";
 
 function MessageList() {
   const { msgLoading, messageList } = useMessage();
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
+  const { openWriteDialog } = useMessage();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -21,8 +25,26 @@ function MessageList() {
     };
   }, [setLoading]);
 
-  if (msgLoading || loading) return <>Loading</>;
-  if (messageList?.length === 0) return <>No message</>;
+  if (msgLoading || loading) return <LoadingComponent />;
+  if (messageList?.length === 0)
+    return (
+      <div className="no-message">
+        <div className="no-message-content">
+          <span>No message, be the first one.</span>
+          {user ? (
+            <PrimaryButton1
+              onclick={() => {
+                openWriteDialog();
+              }}
+            >
+              Write
+            </PrimaryButton1>
+          ) : (
+            <PrimaryLink1 to={"/auth/signin"}>Login</PrimaryLink1>
+          )}
+        </div>
+      </div>
+    );
   return (
     <ul className="message-list">
       {messageList.map((item) => (
