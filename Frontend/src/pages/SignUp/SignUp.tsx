@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import PrimaryButton1 from "../../components/Buttons/PrimaryButton/PrimaryButton1";
 import AvatarButton from "../../components/Buttons/AvatarButton/AvatarButton";
 import PageLogo from "../../components/PageLogo/PageLogo";
-import LoadingForm from "../../components/Loading/LoadingForm";
+import LoadingForm from "../../components/Loading/LoadingForm/LoadingForm";
 import "./signUpStyles.css";
 import { useDisplay } from "../../hooks/useDisplay";
 import PrimaryButton2 from "../../components/Buttons/PrimaryButton/PrimaryButton2";
@@ -59,7 +59,7 @@ function SignUp() {
       body: { admin },
       title: "Admin Account",
       description:
-        "Enter the correct keyword to set user as admin, leave empty if not.",
+        "Enter the correct keyword to set user as admin, leave empty if not. Hint: ajtan123",
     },
   };
 

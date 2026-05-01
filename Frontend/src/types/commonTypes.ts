@@ -2,6 +2,8 @@ export type UserType = {
   id: number;
   username: string;
   name: string;
+  first_name: string;
+  last_name: string;
   avatar_id: string;
   role: string;
 } | null;

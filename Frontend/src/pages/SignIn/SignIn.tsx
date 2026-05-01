@@ -7,15 +7,18 @@ import PageLogo from "../../components/PageLogo/PageLogo";
 import PrimaryButton1 from "../../components/Buttons/PrimaryButton/PrimaryButton1";
 import "./signInStyles.css";
 import { useDisplay } from "../../hooks/useDisplay";
+import LoadingForm from "../../components/Loading/LoadingForm/LoadingForm";
 
 function SignIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const { setDisplayItem } = useDisplay();
   const auth = useAuth();
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     const data = await authSignIn({
       username,
       password,
@@ -23,13 +26,15 @@ function SignIn() {
     if (!data.ok) {
       setDisplayItem(data.message, false);
     } else {
+      setDisplayItem(`Welcome user @${data.user.username}!`);
       auth.setUser(data.user);
     }
-    console.log(data);
+    setLoading(false);
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      {loading && <LoadingForm />}
       <PageLogo />
       <header>
         <h1>Sign In</h1>

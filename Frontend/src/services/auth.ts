@@ -34,6 +34,32 @@ export const authProtected = async () => {
   return data;
 };
 
+type UpdateProfileType = (
+  id: number,
+  firstName: string,
+  lastName: string,
+  avatar: string,
+) => Promise<{
+  ok: boolean;
+  errors: Record<string, string>[];
+  message: string;
+}>;
+
+export const updateProfile: UpdateProfileType = async (
+  id,
+  firstName,
+  lastName,
+  avatar,
+) => {
+  const res = await api(
+    "/auth/update-profile",
+    "POST",
+    JSON.stringify({ id, firstName, lastName, avatar }),
+  );
+  const data = res.json();
+  return data;
+};
+
 type AuthSwitchMemberType = (
   id: number,
   membershipPasscode: string,
