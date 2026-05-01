@@ -1,5 +1,4 @@
 import { useState } from "react";
-import SearchInput from "../../../components/Inputs/SearchInput/SearchInput";
 import MenuIcon from "../../../components/Icons/MenuIcon";
 import type React from "react";
 import PrimaryLink1 from "../../../components/Links/PrimaryLink/PrimaryLink1";
@@ -15,7 +14,6 @@ function PageHeader({
 }: {
   sideNavRef: React.RefObject<HTMLDivElement | null>;
 }) {
-  const [searchInput, setSearchInput] = useState("");
   const { user } = useAuth();
   const [displayUserMenu, setDisplayUserMenu] = useState(false);
 
@@ -44,10 +42,6 @@ function PageHeader({
         </button>
         <PageLogo />
       </div>
-      <SearchInput
-        state={[searchInput, setSearchInput]}
-        placeholder={"Find Anything"}
-      />
       <div className="page-header-right">
         {user ? (
           <div className="avatar-container" onClick={toggleUserMenu}>

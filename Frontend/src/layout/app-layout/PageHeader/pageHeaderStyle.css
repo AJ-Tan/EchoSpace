@@ -16,16 +16,8 @@
     flex: 0;
     display: flex;
     gap: 0.5rem;
+  }
 
-    @media screen and (max-width: 680px) {
-      .page-logo {
-        display: none;
-      }
-    }
-  }
-  & > *:nth-child(2) {
-    flex: 1;
-  }
   & > *:last-child {
     flex-shrink: 0;
 
