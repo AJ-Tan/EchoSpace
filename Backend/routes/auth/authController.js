@@ -5,6 +5,7 @@ const {
   findUser,
   insertUser,
   updateRole,
+  updateProfile,
 } = require("../../config/database/login-query");
 const {
   validateRegister,
@@ -13,6 +14,7 @@ const {
   validateAdmin,
   validateAvatar,
   validatePasscode,
+  validateUpdateProfile,
 } = require("./authInputValidator");
 const { validationResult } = require("express-validator");
 
@@ -49,6 +51,8 @@ module.exports.signIn = async (req, res, next) => {
         id: user.id,
         username: user.username,
         name: `${user.first_name} ${user.last_name}`,
+        first_name: user.first_name,
+        last_name: user.last_name,
         avatar_id: user.avatar_id,
         role: user.role,
       },
@@ -118,6 +122,21 @@ module.exports.signUp = [
     try {
       await insertUser(req.body);
       res.status(201).json({ ok: true, message: "Signup success." });
+    } catch (err) {
+      next(err);
+    }
+  },
+];
+
+module.exports.updateUserProfile = [
+  validateUpdateProfile,
+  async (req, res, next) => {
+    const result = validationResult(req);
+    if (!result.isEmpty())
+      return res.json({ ok: false, errors: result.array() });
+    try {
+      await updateProfile(req.body);
+      res.status(200).json({ ok: true, message: "Updated profile." });
     } catch (err) {
       next(err);
     }

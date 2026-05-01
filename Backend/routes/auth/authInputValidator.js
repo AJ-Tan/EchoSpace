@@ -73,6 +73,14 @@ module.exports.validatePasscode = [
   }),
 ];
 
+module.exports.validateUpdateProfile = [
+  body("firstName").trim().notEmpty().withMessage("First Name is required."),
+  body("lastName").trim().notEmpty().withMessage("Last Name is required."),
+  body("avatar")
+    .isIn(["1", "2", "3", "4", "5", "6"])
+    .withMessage("Invalid avatar."),
+];
+
 module.exports.validateRegister = [
   body("username")
     .trim()

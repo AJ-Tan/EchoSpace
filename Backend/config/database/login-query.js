@@ -58,3 +58,14 @@ module.exports.updateRole = async (id) => {
     throw new Error(err);
   }
 };
+
+module.exports.updateProfile = async ({ id, firstName, lastName, avatar }) => {
+  try {
+    await pool.query(
+      "UPDATE members_only.login_info SET first_name=$1, last_name=$2, avatar_id=$3 WHERE id=$4",
+      [firstName, lastName, avatar, id],
+    );
+  } catch (err) {
+    throw new Error(err);
+  }
+};
