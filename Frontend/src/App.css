@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.loading-page {
+  height: 100vh;
+}
+
 .pop-menu {
   position: absolute;
   top: 100%;

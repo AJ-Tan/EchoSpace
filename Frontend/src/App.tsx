@@ -4,6 +4,7 @@ import { createHashRouter, RouterProvider } from "react-router";
 import { routes } from "./routes/routes";
 import { authProtected } from "./services/auth";
 import { useAuth } from "./hooks/useAuth";
+import LoadingComponent from "./components/Loading/LoadingComponent/LoadingComponent";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -18,7 +19,12 @@ function App() {
     });
   }, [setUser]);
 
-  if (loading) return <div>Initial Loading...</div>;
+  if (loading)
+    return (
+      <div className="loading-page">
+        <LoadingComponent />
+      </div>
+    );
   const router = createHashRouter(routes(user));
   return <RouterProvider router={router} />;
 }
