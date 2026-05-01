@@ -1,0 +1,7 @@
+.app-history {
+  height: 100%;
+
+  .loading-component {
+    font-size: 0.8rem;
+  }
+}

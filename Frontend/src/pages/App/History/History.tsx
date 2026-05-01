@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAuth } from "../../../hooks/useAuth";
 import useMessage from "../../../hooks/useMessage";
 import MessageList from "../Home/HomeComponents/MessageList";
+import "./historyStyles.css";
 
 function History() {
   const { user } = useAuth();
@@ -13,7 +14,7 @@ function History() {
     }
   }, [user, loadMessage]);
   return (
-    <div>
+    <div className="app-history">
       <MessageList />
     </div>
   );
