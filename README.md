@@ -2,8 +2,6 @@
 
 A simple, modern social messaging platform built with React.
 
-![EchoSpace Banner](https://via.placeholder.com/800x200?text=EchoSpace) <!-- Replace with actual banner if you have one -->
-
 ## ✨ Features
 
 - **User Authentication**
@@ -32,9 +30,9 @@ A simple, modern social messaging platform built with React.
 ## 🛠️ Technologies Used
 
 - **Frontend**: React.js, React Router
-- **Styling**: CSS (or TailwindCSS / Styled Components - specify if used)
+- **Styling**: CSS
 - **Authentication**: JWT (JSON Web Tokens) for secure session management
-- **Backend**: (Node.js + Express + MongoDB / PostgreSQL - update accordingly)
+- **Backend**: (Node.js + Express + PostgreSQL)
 
 ## 📸 Screenshots
 
