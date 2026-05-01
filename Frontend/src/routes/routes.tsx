@@ -10,6 +10,7 @@ import Message from "../pages/App/Message/Message";
 import History from "../pages/App/History/History";
 import AuthLayout from "../layout/auth-layout/AuthLayout";
 import ProtectedRoute from "./ProtectedRoute";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 type RoutesType = (user: UserType) => RouteObject[];
 
@@ -18,6 +19,7 @@ export const routes: RoutesType = (user) => {
     {
       path: "/",
       element: <AppLayout />,
+      errorElement: <ErrorPage />,
       children: [
         {
           path: "/",
