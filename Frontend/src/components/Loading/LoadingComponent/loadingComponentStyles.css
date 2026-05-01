@@ -1,0 +1,24 @@
+.loading-component {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10em;
+  margin-block-start: -5em;
+
+  .loading-container {
+    width: 100%;
+  }
+
+  span {
+    margin-block-start: -1.5em;
+    font-size: 1.5em;
+  }
+}
