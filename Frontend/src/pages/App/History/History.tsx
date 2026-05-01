@@ -14,7 +14,7 @@ function History() {
     }
   }, [user, loadMessage]);
   return (
-    <div className="app-history">
+    <div className="app-content">
       <MessageList />
     </div>
   );

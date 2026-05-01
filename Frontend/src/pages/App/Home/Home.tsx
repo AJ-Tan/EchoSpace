@@ -11,7 +11,7 @@ function Home() {
   }, [loadMessage]);
 
   return (
-    <div className="app-home">
+    <div className="app-content">
       <MessageList />
     </div>
   );
